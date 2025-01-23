@@ -2,7 +2,7 @@
 
 Modern ve kullanıcı dostu bir RSS okuyucu uygulaması. Next.js ve Tailwind CSS ile geliştirilmiş, koyu/açık tema desteği ve gelişmiş arama özellikleri sunan bir web uygulaması.
 
-![RSS Reader](public/preview.png)
+![RSS Reader](https://opengraph.githubassets.com/f2037394214445c0f01ab9a9063760031ffa1630255d90d810ccee4172da6027/umutcandev/rss-reader)
 
 ## 🚀 Özellikler
 
