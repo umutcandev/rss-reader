@@ -27,7 +27,7 @@ function extractImageUrl(item: FeedItem): string | null {
   return null;
 }
 
-function extractDomain(url: string) {
+function extractDomain(url: string): string {
   try {
     const domain = new URL(url).hostname
     return domain.replace(/^www\./, '')

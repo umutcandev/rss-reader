@@ -46,7 +46,7 @@ export function Header({ items, currentRssUrl }: HeaderProps) {
         {/* Logo */}
         <div className="w-[180px] flex-none">
           <div className="flex items-center space-x-2">
-            <span className="hidden font-bold sm:inline-flex items-center">
+            <span className="hidden font-bold sm:inline-flex items-center gap-1.5">
               <Link href="/" className="hover:text-foreground">RSS Reader</Link>
               <a 
                 href="https://github.com/umutcandev" 

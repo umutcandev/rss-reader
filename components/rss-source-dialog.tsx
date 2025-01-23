@@ -19,7 +19,6 @@ export function RssSourceDialog({ onSourceChange }: RssSourceDialogProps) {
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
-  // Sadece ilk yüklemede çalışacak
   useEffect(() => {
     const hasUserChosen = localStorage.getItem('rssChoice')
     if (!hasUserChosen) {
@@ -27,10 +26,10 @@ export function RssSourceDialog({ onSourceChange }: RssSourceDialogProps) {
     }
   }, [])
 
-  const handleDefaultSource = async () => {
+  const handleDefaultSource = () => {
     localStorage.setItem('rssChoice', 'true')
     localStorage.removeItem('rssSource')
-    await onSourceChange(DEFAULT_RSS)
+    onSourceChange(DEFAULT_RSS)
     setOpen(false)
   }
 
