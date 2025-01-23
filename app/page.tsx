@@ -1,19 +1,19 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Header } from "@/components/header"
 import { Calendar, Clock, User, ArrowUpRight, ExternalLink } from "lucide-react"
 import Image from "next/image"
 import { RssSourceDialog } from '@/components/rss-source-dialog'
-import { useFeed } from '@/hooks/use-feed'
+import { useFeed, FeedItem } from '@/hooks/use-feed'
 import { Loader } from '@/components/ui/loader'
 import { Button } from '@/components/ui/button'
 import { Footer } from '@/components/footer'
 import React from 'react'
 
-function extractImageUrl(item: any) {
-  if (item.media && item.media.$ && item.media.$.url) {
+function extractImageUrl(item: FeedItem) {
+  if ('media' in item && item.media && '$' in item.media && item.media.$ && 'url' in item.media.$) {
     return item.media.$.url;
   }
 

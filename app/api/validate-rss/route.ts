@@ -1,4 +1,3 @@
-import { NextResponse } from 'next/server'
 import Parser from 'rss-parser'
 
 export async function GET(request: Request) {
@@ -6,14 +5,18 @@ export async function GET(request: Request) {
   const url = searchParams.get('url')
 
   if (!url) {
-    return NextResponse.json({ isValid: false })
+    return Response.json({ isValid: false })
   }
 
   try {
+    const response = await fetch(url)
+    const xmlData = await response.text()
+
     const parser = new Parser()
-    await parser.parseURL(url)
-    return NextResponse.json({ isValid: true })
-  } catch (error) {
-    return NextResponse.json({ isValid: false })
+    await parser.parseString(xmlData)
+
+    return Response.json({ isValid: true })
+  } catch {
+    return Response.json({ isValid: false })
   }
 } 

@@ -1,36 +1,96 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# RSS Reader
 
-## Getting Started
+Modern ve kullanıcı dostu bir RSS okuyucu uygulaması. Next.js ve Tailwind CSS ile geliştirilmiş, koyu/açık tema desteği ve gelişmiş arama özellikleri sunan bir web uygulaması.
 
-First, run the development server:
+![RSS Reader](public/preview.png)
 
+## 🚀 Özellikler
+
+- 📱 Responsive tasarım (Mobil, tablet ve masaüstü uyumlu)
+- 🌓 Koyu/Açık tema desteği
+- 🔍 Gelişmiş arama özellikleri
+  - Klavye kısayolu ile hızlı arama (⌘/Ctrl + S)
+  - İçerik bazlı arama
+  - Anlık sonuçlar
+- 📰 RSS Feed Yönetimi
+  - Özel RSS kaynağı ekleme
+  - Varsayılan kaynak (Teknogoal RSS)
+  - Kaynak doğrulama
+- 💫 Modern UI/UX
+  - Görsel önizlemeler
+  - Yükleme animasyonları
+  - Hover efektleri
+  - Pürüzsüz geçişler
+- ⚡️ Performans Optimizasyonları
+  - Sayfalama (9 makale gösterimi)
+  - Lazy loading
+  - Önbellekleme
+
+## 🛠️ Kullanılan Teknolojiler
+
+- [Next.js 15](https://nextjs.org/) - React framework
+- [Tailwind CSS](https://tailwindcss.com/) - CSS framework
+- [shadcn/ui](https://ui.shadcn.com/) - UI bileşenleri
+- [TypeScript](https://www.typescriptlang.org/) - Tip güvenliği
+- [RSS Parser](https://www.npmjs.com/package/rss-parser) - RSS feed işleme
+- [Lucide Icons](https://lucide.dev/) - İkonlar
+- [next-themes](https://github.com/pacocoursey/next-themes) - Tema yönetimi
+- [cmdk](https://cmdk.paco.me/) - Komut paleti
+
+## 🚀 Kurulum
+
+1. Projeyi klonlayın:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/umutcandev/rss-reader.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Proje dizinine gidin:
+```bash
+cd rss-reader
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Bağımlılıkları yükleyin:
+```bash
+npm install
+# veya
+yarn install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Geliştirme sunucusunu başlatın:
+```bash
+npm run dev
+# veya
+yarn dev
+```
 
-## Learn More
+5. Tarayıcınızda [http://localhost:3000](http://localhost:3000) adresini açın.
 
-To learn more about Next.js, take a look at the following resources:
+## 📝 Kullanım
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Ana sayfada varsayılan olarak Teknogoal RSS kaynağı yüklenir
+2. Kendi RSS kaynağınızı eklemek için:
+   - "RSS Kaynağınızı Seçin" dialogunu açın
+   - RSS bağlantınızı yapıştırın
+   - "Ekle" butonuna tıklayın
+3. Makalelerde arama yapmak için:
+   - Arama butonuna tıklayın veya ⌘/Ctrl + S kısayolunu kullanın
+   - Arama terimini girin
+   - Sonuçlar anında görüntülenecektir
+4. Tema değiştirmek için:
+   - Sağ üst köşedeki tema butonunu kullanın
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🤝 Katkıda Bulunma
 
-## Deploy on Vercel
+1. Bu repository'yi fork edin
+2. Yeni bir branch oluşturun (`git checkout -b feature/amazing-feature`)
+3. Değişikliklerinizi commit edin (`git commit -m 'feat: Add amazing feature'`)
+4. Branch'inizi push edin (`git push origin feature/amazing-feature`)
+5. Pull Request oluşturun
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📄 Lisans
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Bu proje MIT lisansı altında lisanslanmıştır. Daha fazla bilgi için [LICENSE](LICENSE) dosyasına bakın.
+
+## 👤 Geliştirici
+
+- GitHub: [@umutcandev](https://github.com/umutcandev)

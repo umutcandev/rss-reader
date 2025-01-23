@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Command, Moon, Sun, Search, ExternalLink } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import { FeedItem } from '@/hooks/use-feed'
+import Link from 'next/link'
 
 function extractDomain(url: string) {
   try {
@@ -46,7 +47,7 @@ export function Header({ items, currentRssUrl }: HeaderProps) {
         <div className="w-[180px] flex-none">
           <div className="flex items-center space-x-2">
             <span className="hidden font-bold sm:inline-flex items-center">
-              <a href="/" className="hover:text-foreground">RSS Reader</a>
+              <Link href="/" className="hover:text-foreground">RSS Reader</Link>
             </span>
             <span className="font-bold sm:hidden">RSS</span>
           </div>

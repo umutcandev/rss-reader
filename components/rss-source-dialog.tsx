@@ -27,9 +27,16 @@ export function RssSourceDialog({ onSourceChange }: RssSourceDialogProps) {
     }
   }, [])
 
+  const handleDefaultSource = async () => {
+    localStorage.setItem('rssChoice', 'true')
+    localStorage.removeItem('rssSource')
+    await onSourceChange(DEFAULT_RSS)
+    setOpen(false)
+  }
+
   const handleSubmit = async () => {
     if (!rssUrl) {
-      useDefaultSource()
+      handleDefaultSource()
       return
     }
 
@@ -48,18 +55,11 @@ export function RssSourceDialog({ onSourceChange }: RssSourceDialogProps) {
       } else {
         setError('Geçersiz RSS kaynağı. Lütfen kontrol edip tekrar deneyin.')
       }
-    } catch (err) {
+    } catch {
       setError('RSS kaynağı kontrol edilirken bir hata oluştu.')
     } finally {
       setIsLoading(false)
     }
-  }
-
-  const useDefaultSource = async () => {
-    localStorage.setItem('rssChoice', 'true')
-    localStorage.removeItem('rssSource')
-    await onSourceChange(DEFAULT_RSS)
-    setOpen(false)
   }
 
   const handleOpenChange = (newOpen: boolean) => {
@@ -118,7 +118,7 @@ export function RssSourceDialog({ onSourceChange }: RssSourceDialogProps) {
         </div>
 
         <div className="flex flex-col gap-2">
-          <Button onClick={useDefaultSource} variant="outline" disabled={isLoading}>
+          <Button onClick={handleDefaultSource} variant="outline" disabled={isLoading}>
             RSS Kaynağım Yok (Teknogoal RSS Kullan)
           </Button>
         </div>
