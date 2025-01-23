@@ -12,9 +12,9 @@ import { Button } from '@/components/ui/button'
 import { Footer } from '@/components/footer'
 import React from 'react'
 
-function extractImageUrl(item: FeedItem) {
-  if ('media' in item && item.media && '$' in item.media && item.media.$ && 'url' in item.media.$) {
-    return item.media.$.url;
+function extractImageUrl(item: FeedItem): string | null {
+  if (item.media && typeof item.media === 'object' && '$' in item.media && item.media.$ && typeof item.media.$ === 'object' && 'url' in item.media.$) {
+    return item.media.$.url as string;
   }
 
   if (item.content) {

@@ -10,6 +10,11 @@ export interface FeedItem {
   isoDate: string
   creator: string
   content: string
+  media?: {
+    $?: {
+      url?: string
+    }
+  }
 }
 
 export interface Feed {

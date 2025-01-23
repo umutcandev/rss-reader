@@ -48,6 +48,14 @@ export function Header({ items, currentRssUrl }: HeaderProps) {
           <div className="flex items-center space-x-2">
             <span className="hidden font-bold sm:inline-flex items-center">
               <Link href="/" className="hover:text-foreground">RSS Reader</Link>
+              <a 
+                href="https://github.com/umutcandev" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-xs text-muted-foreground/50 hover:text-muted-foreground transition-colors"
+              >
+                by UmutcanDev
+              </a>
             </span>
             <span className="font-bold sm:hidden">RSS</span>
           </div>
