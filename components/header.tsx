@@ -3,12 +3,12 @@
 import { useState, useEffect } from 'react'
 import { CommandPalette } from '@/components/command-palette'
 import { Button } from '@/components/ui/button'
-import { Command, Moon, Sun, Search, ExternalLink } from 'lucide-react'
+import { Command, Moon, Sun, Search, ExternalLink, RefreshCw } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import { FeedItem } from '@/hooks/use-feed'
 import Link from 'next/link'
 
-function extractDomain(url: string) {
+function extractDomain(url: string): string {
   try {
     const domain = new URL(url).hostname
     return domain.replace(/^www\./, '')
@@ -20,11 +20,13 @@ function extractDomain(url: string) {
 interface HeaderProps {
   items: FeedItem[]
   currentRssUrl: string
+  onRefresh?: () => Promise<void>
 }
 
-export function Header({ items, currentRssUrl }: HeaderProps) {
+export function Header({ items, currentRssUrl, onRefresh }: HeaderProps) {
   const { setTheme, theme } = useTheme()
   const [showSearch, setShowSearch] = useState(false)
+  const [isRefreshing, setIsRefreshing] = useState(false)
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -38,6 +40,17 @@ export function Header({ items, currentRssUrl }: HeaderProps) {
     return () => document.removeEventListener('keydown', down)
   }, [])
 
+  const handleRefresh = async () => {
+    if (!onRefresh || isRefreshing) return
+    
+    setIsRefreshing(true)
+    try {
+      await onRefresh()
+    } finally {
+      setIsRefreshing(false)
+    }
+  }
+
   const domain = extractDomain(currentRssUrl)
 
   return (
@@ -46,16 +59,8 @@ export function Header({ items, currentRssUrl }: HeaderProps) {
         {/* Logo */}
         <div className="w-[180px] flex-none">
           <div className="flex items-center space-x-2">
-            <span className="hidden font-bold sm:inline-flex items-center gap-1.5">
+            <span className="hidden font-bold sm:inline-flex items-center">
               <Link href="/" className="hover:text-foreground">RSS Reader</Link>
-              <a 
-                href="https://github.com/umutcandev" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-xs text-muted-foreground/50 hover:text-muted-foreground transition-colors"
-              >
-                by UmutcanDev
-              </a>
             </span>
             <span className="font-bold sm:hidden">RSS</span>
           </div>
@@ -89,6 +94,17 @@ export function Header({ items, currentRssUrl }: HeaderProps) {
             onClick={() => setShowSearch(true)}
           >
             <Search className="h-4 w-4" />
+          </Button>
+
+          {/* Yenileme butonu */}
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={handleRefresh}
+            disabled={isRefreshing}
+          >
+            <RefreshCw className={`h-4 w-4 ${isRefreshing ? 'animate-spin' : ''}`} />
+            <span className="sr-only">Yenile</span>
           </Button>
 
           <Button

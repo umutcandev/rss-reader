@@ -59,6 +59,7 @@ export default function Home() {
       <Header 
         items={feed.items}
         currentRssUrl={rssSource}
+        onRefresh={mutate}
       />
       <RssSourceDialog onSourceChange={handleSourceChange} />
       
