@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Header } from "@/components/header"
 import { Calendar, Clock, User, ArrowUpRight, ExternalLink } from "lucide-react"
@@ -48,10 +48,13 @@ export default function Home() {
   
   const { feed, isLoading, mutate } = useFeed(rssSource)
 
-  const handleSourceChange = async (newSource: string) => {
+  useEffect(() => {
+    mutate()
+  }, [rssSource])
+
+  const handleSourceChange = (newSource: string) => {
     setRssSource(newSource)
     localStorage.setItem('rssSource', newSource)
-    await mutate()
   }
 
   return (
@@ -61,7 +64,9 @@ export default function Home() {
         currentRssUrl={rssSource}
         onRefresh={mutate}
       />
-      <RssSourceDialog onSourceChange={handleSourceChange} />
+      <RssSourceDialog 
+        onSourceChange={handleSourceChange}
+      />
       
       <main className="flex-1 container mx-auto py-8">
         {isLoading ? (

@@ -75,14 +75,14 @@ export function CommandPalette({ open, onOpenChange, items }: CommandPaletteProp
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] w-[calc(100%-32px)] sm:w-full max-w-2xl p-0 md:p-6 gap-0">
+      <DialogContent className="fixed left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] w-[calc(100%-32px)] sm:w-full max-w-2xl p-0 md:p-0 gap-0 rounded-xl overflow-hidden border shadow-lg">
         <DialogTitle className="sr-only">Makalelerde Ara</DialogTitle>
-        <Command className="rounded-xl border shadow-lg">
+        <Command className="rounded-none border-0">
           <CommandInput
             placeholder="İçeriklerde ara..."
             value={searchQuery}
             onValueChange={performSearch}
-            className="border-b py-4 px-6 text-base"
+            className="border-0 focus:ring-0 text-base px-4 h-12"
             autoFocus
           />
           <CommandList className="max-h-[400px] overflow-auto py-2">

@@ -49,7 +49,7 @@ export function RssSourceDialog({ onSourceChange }: RssSourceDialogProps) {
       if (data.isValid) {
         localStorage.setItem('rssChoice', 'true')
         localStorage.setItem('rssSource', rssUrl)
-        await onSourceChange(rssUrl)
+        onSourceChange(rssUrl)
         setOpen(false)
       } else {
         setError('Geçersiz RSS kaynağı. Lütfen kontrol edip tekrar deneyin.')
@@ -70,18 +70,18 @@ export function RssSourceDialog({ onSourceChange }: RssSourceDialogProps) {
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
-      <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader>
-          <DialogTitle className="flex items-center gap-2">
-            <RssIcon className="h-5 w-5" />
+      <DialogContent className="sm:max-w-[425px] w-[calc(100%-48px)] rounded-lg border shadow-sm">
+        <DialogHeader className="space-y-2 pb-2">
+          <DialogTitle className="flex items-center gap-2 text-base">
+            <RssIcon className="h-4 w-4" />
             RSS Kaynağınızı Seçin
           </DialogTitle>
-          <DialogDescription>
+          <DialogDescription className="text-sm text-left">
             Kendi RSS kaynağınızı ekleyerek içerikleri özelleştirebilirsiniz.
           </DialogDescription>
         </DialogHeader>
 
-        <div className="grid gap-4 py-4">
+        <div className="space-y-4">
           <div className="space-y-2">
             <div className="flex gap-2">
               <Input
@@ -91,35 +91,44 @@ export function RssSourceDialog({ onSourceChange }: RssSourceDialogProps) {
                   setRssUrl(e.target.value)
                   setError('')
                 }}
-                className={error ? 'border-red-500' : ''}
+                className={`${error ? 'border-red-500' : ''} h-8 text-sm w-[calc(100%-90px)]`}
                 disabled={isLoading}
               />
               <Button 
                 onClick={handleSubmit} 
-                className="shrink-0 min-w-[100px]"
+                className="h-8 w-[82px]"
                 disabled={isLoading}
+                size="sm"
               >
                 {isLoading ? (
-                  <Loader size={16} className="mr-2" />
+                  <Loader size={14} />
                 ) : (
-                  <Plus className="h-4 w-4 mr-2" />
+                  <>
+                    <Plus className="h-3.5 w-3.5 mr-1.5" />
+                    Ekle
+                  </>
                 )}
-                {isLoading ? 'Ekleniyor...' : 'Ekle'}
               </Button>
             </div>
             {error && (
-              <p className="text-sm text-red-500 flex items-center gap-1">
-                <X className="h-4 w-4" />
+              <p className="text-xs text-red-500 flex items-center gap-1">
+                <X className="h-3.5 w-3.5" />
                 {error}
               </p>
             )}
           </div>
-        </div>
 
-        <div className="flex flex-col gap-2">
-          <Button onClick={handleDefaultSource} variant="outline" disabled={isLoading}>
-            RSS Kaynağım Yok (Teknogoal RSS Kullan)
-          </Button>
+          <div className="flex justify-center">
+            <Button 
+              onClick={handleDefaultSource} 
+              variant="outline" 
+              disabled={isLoading} 
+              className="h-8 text-sm px-4"
+              size="sm"
+            >
+              RSS kaynağım yok
+            </Button>
+          </div>
         </div>
       </DialogContent>
     </Dialog>
